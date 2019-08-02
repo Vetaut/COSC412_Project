@@ -92,7 +92,7 @@ public abstract class Mon_Bass : MonoBehaviour {
 
         m_HP = Hp;
 
-        Demo_GM.Gm.MonsterList.Add(this.gameObject);
+        //Demo_GM.Gm.MonsterList.Add(this.gameObject);
     }
 
     

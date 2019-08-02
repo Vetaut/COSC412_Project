@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Knight : PlayerController
-{
-
- 
+public class Knight : PlayerController {
 
     private void Start()
     {
@@ -13,7 +11,6 @@ public class Knight : PlayerController
         m_CapsulleCollider  = this.transform.GetComponent<CapsuleCollider2D>();
         m_Anim = this.transform.Find("model").GetComponent<Animator>();
         m_rigidbody = this.transform.GetComponent<Rigidbody2D>();
-  
 
     }
 
@@ -45,20 +42,8 @@ public class Knight : PlayerController
             m_Anim.Play("Demo_Skill_1");
 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            m_Anim.Play("Demo_Skill_2");
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            m_Anim.Play("Demo_Skill_3");
-
-        }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-      
-
             switch (Demo_GM.Gm.CharacterID)
             {
                 case 0:
@@ -73,13 +58,24 @@ public class Knight : PlayerController
             }
 
         }
+        // Add code if other skills work
+        /* if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            m_Anim.Play("Demo_Skill_2");
 
-      
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            m_Anim.Play("Demo_Skill_3");
+
+        }
+        */
 
 
 
 
-            if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Skill_1"))
+
+        if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Skill_1"))
         {
            
             if (Is_Skill_1_Attack)
@@ -117,7 +113,6 @@ public class Knight : PlayerController
         if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Skill_1") || m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Skill_2")
             || m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Skill_3"))
         {
-          
             return;
         }
 
@@ -130,24 +125,19 @@ public class Knight : PlayerController
         }
 
 
-        if (Input.GetKeyDown(KeyCode.S))  //아래 버튼 눌렀을때. 
+        if (Input.GetKeyDown(KeyCode.S))  // Down button pressed.
         {
-
             IsSit = true;
             m_Anim.Play("Demo_Sit");
-
-
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-
             m_Anim.Play("Demo_Idle");
             IsSit = false;
-
         }
 
 
-        // sit나 die일때 애니메이션이 돌때는 다른 애니메이션이 되지 않게 한다. 
+        //When the animation is in sit or die, it does not become another animation.
         if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Sit") || m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Type1_Die")|| m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Type2_Die")|| m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Type3_Die"))
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -164,22 +154,16 @@ public class Knight : PlayerController
 
         m_MoveX = Input.GetAxis("Horizontal");
 
-
-   
         GroundCheckUpdate();
-
 
         if (!m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-
-
                 m_Anim.Play("Demo_Attack");
             }
             else
             {
-
                 if (m_MoveX == 0)
                 {
                     if (!OnceJumpRayCheck)
@@ -188,45 +172,29 @@ public class Knight : PlayerController
                 }
                 else
                 {
-
                     m_Anim.Play("Demo_Run");
                 }
 
             }
         }
 
-
-       
-
-     
-
-        // 기타 이동 인풋.
-
+        // Other mobile input.
         if (Input.GetKey(KeyCode.D))
         {
 
-            if (isGrounded)  // 땅바닥에 있었을때. 
+            if (isGrounded)  // When I was on the ground. 
             {
-
-
-
                 if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
                     return;
 
                 transform.transform.Translate(Vector2.right* m_MoveX * MoveSpeed * Time.deltaTime);
 
-
-
             }
             else
             {
-
                 transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
 
             }
-
-
-
 
             if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
                 return;
@@ -238,27 +206,19 @@ public class Knight : PlayerController
         }
         else if (Input.GetKey(KeyCode.A))
         {
-
-
-            if (isGrounded)  // 땅바닥에 있었을때. 
+            if (isGrounded)  // When I was on the ground. 
             {
-
-
-
                 if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
                     return;
-
 
                 transform.transform.Translate(Vector2.right * m_MoveX * MoveSpeed * Time.deltaTime);
 
             }
             else
             {
-
                 transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
 
             }
-
 
             if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
                 return;
@@ -266,15 +226,12 @@ public class Knight : PlayerController
             if (!Input.GetKey(KeyCode.D))
                 Filp(true);
 
-
         }
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
                 return;
-
 
             if (currentJumpCount < JumpCount)  // 0 , 1
             {
@@ -283,12 +240,10 @@ public class Knight : PlayerController
                 {
                     prefromJump();
 
-
                 }
                 else
                 {
                     DownJump();
-
                 }
 
             }
@@ -296,18 +251,10 @@ public class Knight : PlayerController
 
         }
 
-
-
     }
-
-
-  
-
 
     protected override void LandingEvent()
     {
-
-
         if (!m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Run") && !m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
             m_Anim.Play("Demo_Idle");
 
@@ -344,12 +291,8 @@ public class Knight : PlayerController
         tmpobj.transform.SetParent(this.transform);
     }
 
-   
-
- 
     public override void SkillAttack_Anim_3_Enter()
     {
-     
 
         GameObject tmpobj = Instantiate(Skill3Prefab, transform.position, Quaternion.identity);
         tmpobj.transform.position = new Vector2(this.transform.position.x- (transform.localScale.x*1.5f), this.transform.position.y-0.2f);
@@ -361,14 +304,13 @@ public class Knight : PlayerController
 
     public override void Anim_Die_Enter()
     {
-        Instantiate(BloodPrefab,this.transform.localPosition,Quaternion.identity)
-            ;
+        m_Anim.Play("Demo_Type3_Die");
+        Instantiate(BloodPrefab,this.transform.localPosition,Quaternion.identity);
     }
 
 
     public override void DefaulAttack_Collider(GameObject obj)
     {
-
         //Debug.Log("Attack11" + obj);
         if (obj.CompareTag("Monster"))
         {
@@ -380,31 +322,22 @@ public class Knight : PlayerController
 
     }
 
-
     public override void Skill_1Attack_Collider(GameObject obj)
     {
 
         if (obj.CompareTag("Monster"))
         {
-
-           
-        
-            
               //  ISSKill1 = true;
                 Vector2 Knockdir = obj.transform.position - this.transform.position;
                 float StunTime = 1;
 
-               
                 obj.transform.parent.GetComponent<Mon_Bass>().Damaged(15, Knockdir.normalized * 0, StunTime);
 
                 StartCoroutine(Skill_1Co(obj));
-          
         }
-
 
     }
 
-   
     IEnumerator Skill_1Co(GameObject obj)
     {
        
@@ -466,9 +399,6 @@ public class Knight : PlayerController
             yield return new WaitForSeconds(0.01f);
         }
 
-
-
-
     }
 
 
@@ -484,11 +414,6 @@ public class Knight : PlayerController
     public override void Skill_4Attack_Collider(GameObject obj)
     {
     }
-
-
-
-
-
 
 
 }

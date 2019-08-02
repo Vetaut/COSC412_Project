@@ -12,11 +12,11 @@ public class Skill_3 : MonoBehaviour
 
  
  
-    public void Fire(Vector3 dir, float damamge)
+    public void Fire(Vector3 dir, float damage)
     {
       
         this.transform.right = dir;
-        Damage = damamge;
+        Damage = damage;
         StartCoroutine(destroyObj());
 
     }

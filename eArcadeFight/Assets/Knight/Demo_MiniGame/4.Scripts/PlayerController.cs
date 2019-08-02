@@ -5,19 +5,19 @@ using UnityEngine;
 
 public abstract class PlayerController :MonoBehaviour
 {
-    public bool IsSit = false;
-    public int currentJumpCount = 0; 
-    public bool isGrounded = false;
+    public bool IsSit = false;                      // NOT ACCOUNTED FOR
+    public int currentJumpCount = 0;                // NOT ACCOUNTED FOR
+    public bool isGrounded = false;                 // grounded
     public bool OnceJumpRayCheck = false;
 
     public bool Is_DownJump_GroundCheck = false;   // A downward jump or landing block
     protected float m_MoveX;
-    public Rigidbody2D m_rigidbody;
-    protected CapsuleCollider2D m_CapsulleCollider;
-    protected Animator m_Anim;
+    public Rigidbody2D m_rigidbody;                 // NOT ACCOUNTED FOR
+    protected CapsuleCollider2D m_CapsulleCollider; // NOT ACCOUNTED FOR
+    protected Animator m_Anim;  
 
     [Header("[Setting]")]
-    public float MoveSpeed = 6;
+    public float MoveSpeed = 6;                 // moveForce
     public int JumpCount = 2;
     public float jumpForce = 15f;
 
@@ -28,10 +28,7 @@ public abstract class PlayerController :MonoBehaviour
 
     protected void Filp(bool bLeft)
     {
-
-
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
-
     }
 
 
@@ -66,21 +63,19 @@ public abstract class PlayerController :MonoBehaviour
 
             m_CapsulleCollider.enabled = false;
 
-            StartCoroutine(GroundCapsulleColliderTimmerFuc());
+            StartCoroutine(GroundCapsulleColliderTimerFuc());
 
         }
-
-
     }
 
-    IEnumerator GroundCapsulleColliderTimmerFuc()
+    IEnumerator GroundCapsulleColliderTimerFuc()
     {
         yield return new WaitForSeconds(0.3f);
         m_CapsulleCollider.enabled = true;
     }
 
 
-    //////바닥 체크 레이케스트 
+    // Bottom check-ray cast
     Vector2 RayDir = Vector2.down;
 
 
@@ -94,21 +89,15 @@ public abstract class PlayerController :MonoBehaviour
 
         GroundCheckUpdateTic += Time.deltaTime;
 
-
-
         if (GroundCheckUpdateTic > GroundCheckUpdateTime)
         {
             GroundCheckUpdateTic = 0;
-
-
 
             if (PretmpY == 0)
             {
                 PretmpY = transform.position.y;
                 return;
             }
-
-
 
             float reY = transform.position.y - PretmpY;  //    -1  - 0 = -1 ,  -2 -   -1 = -3
 
@@ -117,29 +106,20 @@ public abstract class PlayerController :MonoBehaviour
 
                 if (isGrounded)
                 {
-
                     LandingEvent();
                     OnceJumpRayCheck = false;
 
                 }
                 else
                 {
-
-                   // Debug.Log("안부딪힘");
+                    // Debug.Log("Hitting inside");
 
                 }
 
 
             }
-
-
             PretmpY = transform.position.y;
-
         }
-
-
-
-
     }
 
 
