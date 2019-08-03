@@ -14,14 +14,14 @@ public class PlayerHealth : MonoBehaviour
     private Vector3 healthScale;            // The local scale of the health bar initially (with full health)
     private Knight knightScript; // Reference to the PlayerController Script
     private Animator anim;                  // Reference to the Animator on the player
-    private GameManager gameManager;
+	//private GameManager gameManager;
 
     void Awake()
     {
         // Setting up references
         knightScript = GetComponent<Knight>();
         healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        anim = this.transform.Find("model").GetComponent<Animator>();
 
         // Getting the intial scale of the healthbae (while player is at full health)
         healthScale = healthBar.transform.localScale;
@@ -46,17 +46,17 @@ public class PlayerHealth : MonoBehaviour
                 // If the player doesnt have health die
                 else
                 {
-                    knightScript.Anim_Die_Enter();
+                    anim.SetTrigger("Die");
                     GameObject UI_HP = GameObject.Find("UI_HealthBar");
                     Destroy(UI_HP);
                     Destroy(this.gameObject);
-                    gameManager.DecreasePlayerCount(1);
+                    //gameManager.DecreasePlayerCount(1);
                 }
             }
         }
     }
 
-    void TakeDamage (Transform enemy)
+    public void TakeDamage (Transform enemy)
     {
         // Make sure the player can't jump
         //knightScript.jump = false;
@@ -77,6 +77,33 @@ public class PlayerHealth : MonoBehaviour
         // Update what the health bar looks like
         UpdateHealthBar();
 
+    }
+
+    public void TakeDamage ()
+    {
+        if (Time.time > lastHitTime + repeatDamagePeriod)
+        {
+            // and if the player still has health
+            if (health > 0f)
+            {
+                lastHitTime = Time.time;
+            }
+            // If the player doesnt have health die
+            else
+            {
+                anim.SetTrigger("Die");
+                GameObject UI_HP = GameObject.Find("UI_HealthBar");
+                Destroy(UI_HP);
+                Destroy(this.gameObject);
+                //gameManager.DecreasePlayerCount(1);
+            }
+        }
+
+        // Reduce the players health by 10
+        health -= damageAmount;
+
+        // Update what the health bar looks like
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()

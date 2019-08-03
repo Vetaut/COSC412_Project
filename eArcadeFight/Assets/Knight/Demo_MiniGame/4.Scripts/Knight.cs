@@ -42,6 +42,7 @@ public class Knight : PlayerController {
             m_Anim.Play("Demo_Skill_1");
 
         }
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             switch (Demo_GM.Gm.CharacterID)
@@ -125,7 +126,7 @@ public class Knight : PlayerController {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.S))  // Down button pressed.
+        if (Input.GetKey(KeyCode.S))  // Down button pressed.
         {
             IsSit = true;
             m_Anim.Play("Demo_Sit");
@@ -158,7 +159,7 @@ public class Knight : PlayerController {
 
         if (!m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Demo_Attack"))
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetButtonDown("Fire1"))
             {
                 m_Anim.Play("Demo_Attack");
             }
@@ -200,7 +201,7 @@ public class Knight : PlayerController {
                 return;
 
             if (!Input.GetKey(KeyCode.A))
-                Filp(false);
+                Flip(false);
 
 
         }
@@ -224,7 +225,7 @@ public class Knight : PlayerController {
                 return;
 
             if (!Input.GetKey(KeyCode.D))
-                Filp(true);
+                Flip(true);
 
         }
 

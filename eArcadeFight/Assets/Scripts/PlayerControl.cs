@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [HideInInspector]
-    public bool facingRight = true;             // Determines which way the player is facing
+    public bool facingRight = false;             // Determines which way the player is facing
     [HideInInspector]
     public bool jump = false;                   // Condition for whether the player can jump
 
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     {
         // Setting up references
         groundCheck = transform.Find("groundCheck");
-        anim = GetComponent<Animator>();
+        anim = this.transform.Find("model").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,9 +41,30 @@ public class PlayerControl : MonoBehaviour
         // Cache the x axis input
         float xInput = Input.GetAxis("Horizontal");
 
+        // The Speed animator parameter is set to the absolute value of the horizontal input
         anim.SetFloat("Speed", Mathf.Abs(xInput));
 
+        // If the player is changing direction (xInput has a different sign to velocity.x) or hasn't reached max speed yet
+        if (xInput * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
+            // add force to the player
+            GetComponent<Rigidbody2D>().AddForce(Vector2.right * xInput * moveForce);
 
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+
+        if (xInput < 0 && !facingRight)
+            Flip();
+        else if (xInput > 0 && facingRight)
+            Flip();
+
+        if(jump)
+        {
+            anim.SetTrigger("Jump");
+
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+
+            jump = false;
+        }
     }
 
     void Flip()
@@ -55,4 +76,5 @@ public class PlayerControl : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
 }

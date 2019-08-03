@@ -24,6 +24,8 @@ public class weaponColliderEventSender : MonoBehaviour {
     }
     public Type CharacterType = Type.Player;
 
+    // Added code
+    public PlayerControl pc;
 
     public PlayerController m_PlayerRoot;
     public Mon_Bass m_MonsterRoot;
@@ -33,7 +35,7 @@ public class weaponColliderEventSender : MonoBehaviour {
 
     void Start()
     {
-
+        Debug.Log(this.transform.root.transform.tag);
 
         switch (CharacterType)
         {
@@ -46,6 +48,7 @@ public class weaponColliderEventSender : MonoBehaviour {
      
         }
     }
+
 
     void OnEnable()
     {
@@ -111,6 +114,7 @@ public class weaponColliderEventSender : MonoBehaviour {
                 {
                     case AttackState.Default:
                         m_PlayerRoot.DefaulAttack_Collider(other.gameObject);
+                        //pc.DefaulAttack_Collider(other.gameObject);
                         break;
                     case AttackState.Skill1:
                         m_PlayerRoot.Skill_1Attack_Collider(other.gameObject);

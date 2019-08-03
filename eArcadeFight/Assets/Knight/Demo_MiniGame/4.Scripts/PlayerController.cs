@@ -5,15 +5,15 @@ using UnityEngine;
 
 public abstract class PlayerController :MonoBehaviour
 {
-    public bool IsSit = false;                      // NOT ACCOUNTED FOR
-    public int currentJumpCount = 0;                // NOT ACCOUNTED FOR
+    public bool IsSit = false;                      
+    public int currentJumpCount = 0;                
     public bool isGrounded = false;                 // grounded
     public bool OnceJumpRayCheck = false;
 
     public bool Is_DownJump_GroundCheck = false;   // A downward jump or landing block
     protected float m_MoveX;
-    public Rigidbody2D m_rigidbody;                 // NOT ACCOUNTED FOR
-    protected CapsuleCollider2D m_CapsulleCollider; // NOT ACCOUNTED FOR
+    public Rigidbody2D m_rigidbody;                 
+    protected CapsuleCollider2D m_CapsulleCollider; 
     protected Animator m_Anim;  
 
     [Header("[Setting]")]
@@ -26,7 +26,7 @@ public abstract class PlayerController :MonoBehaviour
     public float Damage;
 
 
-    protected void Filp(bool bLeft)
+    protected void Flip(bool bLeft)
     {
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
     }
