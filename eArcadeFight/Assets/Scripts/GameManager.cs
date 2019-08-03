@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private int player1Count = 1;
     private int player2Count = 1;
+    private int P1KillCount = 0;
+    private int P2KillCount = 0;
 
     // Use this for initialization
     void Awake()
@@ -35,7 +37,12 @@ public class GameManager : MonoBehaviour
     {
         if(player1Count < 1)
         {
-            Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
+            GameObject hold = Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
+
+            Vector3 theScale = hold.transform.localScale;
+            theScale.x *= -1;
+            hold.transform.localScale = theScale;
+
             player1Count++;
         }
 
@@ -52,5 +59,13 @@ public class GameManager : MonoBehaviour
             player1Count--;
         else if(playerID == 2)
             player2Count--;
+    }
+
+    public void IncreasePlayerKillCount(int playerID)
+    {
+        if (playerID == 1)
+            P1KillCount++;
+        else if (playerID == 2)
+            P2KillCount++;
     }
 }

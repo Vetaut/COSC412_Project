@@ -14,15 +14,17 @@ public class PlayerHealth : MonoBehaviour
     private float lastHitTime;              // The time at which the player was last hit
     private Vector3 healthScale;            // The local scale of the health bar initially (with full health)
     private Animator anim;                  // Reference to the Animator on the player
+    private PlayerControl playerControl;
 
     void Awake()
     {
         // Setting up references
-        //healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
         anim = this.transform.Find("model").GetComponent<Animator>();
 
         // Getting the intial scale of the healthbae (while player is at full health)
         healthScale = healthBar.transform.localScale;
+
+        playerControl = transform.GetComponent<PlayerControl>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -101,15 +103,21 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(UI_HP);
                 GameManager.gameManager.DecreasePlayerCount(playerTypeID);
                 Destroy(this.gameObject);
-                //gameManager.DecreasePlayerCount(1);
             }
         }
     }
 
     public void damageCalc()
     {
-        // Reduce the players health by 10
-        health -= damageAmount;
+        if (!playerControl.block)
+        {
+            // Reduce the players health by 10
+            health -= damageAmount;
+        }
+        else
+        {
+            health -= (damageAmount / 2);
+        }
 
         anim.SetTrigger("Hit");
 

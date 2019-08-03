@@ -26,12 +26,13 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBtwAttack <= 0) {
+        if (timeBtwAttack <= 0 && !playerControl.block) {
 
             if (Input.GetButtonDown(attackButton))
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                Debug.Log(enemiesToDamage.Length);
+                for (int i = 0; i < (enemiesToDamage.Length) / 2; i++)
                 {
                     enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage();
                 }
