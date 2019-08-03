@@ -454,13 +454,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205850802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 17.21, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.797618, y: 22.609999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 940611954}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 8505923327869132977}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &211727425
 GameObject:
@@ -7685,7 +7685,7 @@ GameObject:
   - component: {fileID: 1242494319}
   - component: {fileID: 1242494318}
   m_Layer: 0
-  m_Name: UI_HealthDisplay (1)
+  m_Name: UI_HealthDisplay
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7712,13 +7712,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242494317}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 17.21, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3314154, y: 22.53803, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1048947582}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 161043306533984218}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357864512
 GameObject:
@@ -8018,7 +8018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654317959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.37, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8505923327869132977}
@@ -8034,7 +8034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1714681466}
   - component: {fileID: 1714681467}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8860,6 +8860,7 @@ GameObject:
   - component: {fileID: 157716147605386447}
   - component: {fileID: 157716147605386446}
   - component: {fileID: 157716147605386445}
+  - component: {fileID: 157716147605386448}
   m_Layer: 11
   m_Name: Player2
   m_TagString: Player
@@ -8883,6 +8884,8 @@ MonoBehaviour:
   repeatDamagePeriod: 2
   hurtForce: 10
   damageAmount: 10
+  healthBar: {fileID: 1048947583}
+  playerTypeID: 0
 --- !u!61 &157716147605386446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8896,7 +8899,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.32554817}
+  m_Offset: {x: -0.017667979, y: 0.39923072}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8907,7 +8910,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.434063}
+  m_Size: {x: 0.76817757, y: 0.9133735}
   m_EdgeRadius: 0
 --- !u!50 &157716147605386447
 Rigidbody2D:
@@ -8930,6 +8933,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &157716147605386448
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157716147605386444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.14}
+  serializedVersion: 2
+  m_Radius: 0.3084256
 --- !u!1 &159067897782804792
 GameObject:
   m_ObjectHideFlags: 0
@@ -8940,7 +8959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 161150472274460856}
   - component: {fileID: 54230725311978914}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8957,7 +8976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 161097663253774300}
   - component: {fileID: 56072110850540976}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8974,7 +8993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154221335217759706}
   - component: {fileID: 54539505114238220}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8991,7 +9010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154166738466702102}
   - component: {fileID: 54772129667505882}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9008,7 +9027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153845440168484546}
   - component: {fileID: 54729849304588258}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9024,7 +9043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 161209206576483268}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9040,7 +9059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 161048791656367310}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9057,7 +9076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 161388468193093792}
   - component: {fileID: 54127103706670730}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon-Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9077,6 +9096,7 @@ Transform:
   m_Children:
   - {fileID: 1714681466}
   - {fileID: 555520263}
+  - {fileID: 1242494319}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9282,6 +9302,8 @@ MonoBehaviour:
   repeatDamagePeriod: 0.5
   hurtForce: 40
   damageAmount: 10
+  healthBar: {fileID: 0}
+  playerTypeID: 0
 --- !u!212 &8423996785010531607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9630,6 +9652,7 @@ Transform:
   - {fileID: 548475315}
   - {fileID: 215622433}
   - {fileID: 1654317960}
+  - {fileID: 205850804}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9743,6 +9766,8 @@ MonoBehaviour:
   moveForce: 100
   maxSpeed: 6
   jumpForce: 300
+  xCtrl: Horizontal
+  jumpButton: Jump
 --- !u!58 &8510017044568632499
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9822,6 +9847,8 @@ MonoBehaviour:
   repeatDamagePeriod: 2
   hurtForce: 10
   damageAmount: 10
+  healthBar: {fileID: 940611955}
+  playerTypeID: 0
 --- !u!114 &8510017044568632503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9834,12 +9861,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2985f49eccd1341359566f26158065ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackButton: Fire1_P1
   startTimeBtwAttack: 0.3
   attackPos: {fileID: 1654317960}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 2048
-  attackRange: 0.67
+  attackRange: 0.58
   damage: 20
 --- !u!1 &8510827127434222379
 GameObject:

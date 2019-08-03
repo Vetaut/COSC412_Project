@@ -8,8 +8,9 @@ public class PlayerHealth : MonoBehaviour
     public float repeatDamagePeriod = 2f;   // How frequently the player can be damaged
     public float hurtForce = 10f;           // The force with which the player is pushed when hurt
     public float damageAmount = 10f;        // The amount of damagee to take when enemies touch the player
+    public SpriteRenderer healthBar;       // Reference to the sprite renderer of the health bar
+    public int playerTypeID;
 
-    private SpriteRenderer healthBar;       // Reference to the sprite renderer of the health bar
     private float lastHitTime;              // The time at which the player was last hit
     private Vector3 healthScale;            // The local scale of the health bar initially (with full health)
     private Knight knightScript; // Reference to the PlayerController Script
@@ -86,21 +87,33 @@ public class PlayerHealth : MonoBehaviour
             // and if the player still has health
             if (health > 0f)
             {
+                damageCalc();
                 lastHitTime = Time.time;
             }
             // If the player doesnt have health die
             else
             {
-                anim.SetTrigger("Die");
+                if (playerTypeID == 1) {
+                    anim.SetTrigger("Die3");
+                }
+                else if (playerTypeID == 2)
+                {
+                    anim.SetTrigger("Die2");
+                }
                 GameObject UI_HP = GameObject.Find("UI_HealthBar");
                 Destroy(UI_HP);
                 Destroy(this.gameObject);
                 //gameManager.DecreasePlayerCount(1);
             }
         }
+    }
 
+    public void damageCalc()
+    {
         // Reduce the players health by 10
         health -= damageAmount;
+
+        anim.SetTrigger("Hit");
 
         // Update what the health bar looks like
         UpdateHealthBar();

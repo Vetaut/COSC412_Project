@@ -7,6 +7,8 @@ public class Attack : MonoBehaviour
     private PlayerControl playerControl;
     private Animator anim;
 
+    public string attackButton = "Fire1_P1";
+
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 
@@ -26,15 +28,13 @@ public class Attack : MonoBehaviour
     {
         if (timeBtwAttack <= 0) {
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown(attackButton))
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 Debug.Log(enemiesToDamage.Length);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    Debug.Log("Did I hit him?");
                     enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage();
-                    enemiesToDamage[i].GetComponent<PlayerHealth>().UpdateHealthBar();
                 }
                 anim.SetTrigger("Attack");
                 timeBtwAttack = startTimeBtwAttack;

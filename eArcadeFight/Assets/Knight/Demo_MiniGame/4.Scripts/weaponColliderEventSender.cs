@@ -35,7 +35,7 @@ public class weaponColliderEventSender : MonoBehaviour {
 
     void Start()
     {
-        Debug.Log(this.transform.root.transform.tag);
+        //Debug.Log(this.transform.root.transform.tag);
 
         switch (CharacterType)
         {

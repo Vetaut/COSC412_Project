@@ -13,6 +13,9 @@ public class PlayerControl : MonoBehaviour
     public float maxSpeed = 6f;                 // The fastest the player can travel in the x-axis
     public float jumpForce = 50f;               // Amount of force added when the player jumps
 
+    public string xCtrl = "Horizontal_P1";
+    public string jumpButton = "Jump_P1";
+
     private bool isGrounded = false;              // Whether or not the player is grounded
     private Transform groundCheck;              // A position marking where to check if the player is grounded
     private Animator anim;                      // Reference to the player's animator componenet
@@ -31,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         // If the jump button is pressed and the player is grounded then the player should jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown(jumpButton) && isGrounded)
             jump = true;
     }
 
@@ -39,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {
         // Cache the x axis input
-        float xInput = Input.GetAxis("Horizontal");
+        float xInput = Input.GetAxis(xCtrl);
 
         // The Speed animator parameter is set to the absolute value of the horizontal input
         anim.SetFloat("Speed", Mathf.Abs(xInput));
