@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;             // The players health
-    public float repeatDamagePeriod = 2f;   // How frequently the player can be damaged
+    public float repeatDamagePeriod = 1f;   // How frequently the player can be damaged
     public float hurtForce = 10f;           // The force with which the player is pushed when hurt
     public float damageAmount = 10f;        // The amount of damagee to take when enemies touch the player
     public SpriteRenderer healthBar;       // Reference to the sprite renderer of the health bar
@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         playerControl = transform.GetComponent<PlayerControl>();
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Entered Collision with " + collision.gameObject.tag);
@@ -78,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
 
     }
+    */
 
     public void TakeDamage ()
     {
@@ -92,16 +94,21 @@ public class PlayerHealth : MonoBehaviour
             // If the player doesnt have health die
             else
             {
+                int killID = 0;
                 if (playerTypeID == 1) {
+                    killID = 2;
                     anim.SetTrigger("Die3");
                 }
                 else if (playerTypeID == 2)
                 {
+                    killID = 1;
                     anim.SetTrigger("Die2");
                 }
+
                 GameObject UI_HP = GameObject.Find("UI_HealthBar");
                 Destroy(UI_HP);
                 GameManager.gameManager.DecreasePlayerCount(playerTypeID);
+                GameManager.gameManager.IncreasePlayerKillCount(killID);
                 Destroy(this.gameObject);
             }
         }

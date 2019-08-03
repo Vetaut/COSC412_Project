@@ -15,21 +15,32 @@ public class GameManager : MonoBehaviour
     public GameObject Player2_Prefab;
     public int charID;
 
+    public GameObject Player1;
+    public GameObject Player2;
+
+    public GameObject[] P1Lives;
+    public GameObject[] P2Lives;
+    public GameObject[] winScreen;
+
     // Public GameObject PlayerObj;
     public GameObject[] respawnPosition;
-    public int respawnP1 = 0;
-    public int respawnP2 = 1;
 
+    private int respawnP1 = 0;
+    private int respawnP2 = 1;
     private int player1Count = 1;
     private int player2Count = 1;
     private int P1KillCount = 0;
     private int P2KillCount = 0;
+    private int P1LivesLen;
+    private int P2LivesLen;
 
     // Use this for initialization
     void Awake()
     {
         Screen.fullScreen = false;
         gameManager = this;
+        P1LivesLen = P1Lives.Length - 1;
+        P2LivesLen = P2Lives.Length - 1;
     }
 
     // Update is called once per frame
@@ -37,28 +48,55 @@ public class GameManager : MonoBehaviour
     {
         if(player1Count < 1)
         {
-            GameObject hold = Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
-
-            Vector3 theScale = hold.transform.localScale;
-            theScale.x *= -1;
-            hold.transform.localScale = theScale;
-
+            Player1 = Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
+            flipAtStart(Player1);
             player1Count++;
         }
 
         if(player2Count < 1)
         {
-            Instantiate(Player2_Prefab, respawnPosition[respawnP2].transform.position, Quaternion.identity);
+            Player2 = Instantiate(Player2_Prefab, respawnPosition[respawnP2].transform.position, Quaternion.identity);
+            flipAtStart(Player2);
             player2Count++;
         }
+
+        if(P1KillCount >= 3 || P2KillCount >= 3)
+        {
+            Player1.GetComponent<PlayerControl>().enabled = false;
+            Player2.GetComponent<PlayerControl>().enabled = false;
+
+            if(P1KillCount >= 3)
+            {
+                winScreen[0].SetActive(true);
+            }
+            if (P2KillCount >= 3)
+            {
+                winScreen[1].SetActive(true);
+            }
+        }
+    }
+
+    private void flipAtStart(GameObject hold)
+    {
+        Vector3 theScale = hold.transform.localScale;
+        theScale.x *= -1;
+        hold.transform.localScale = theScale;
     }
 
     public void DecreasePlayerCount(int playerID)
     {
-        if(playerID == 1)
+        if (playerID == 1)
+        {
             player1Count--;
-        else if(playerID == 2)
+            P1Lives[P1LivesLen].SetActive(false);
+            P1LivesLen--;
+        }
+        else if (playerID == 2)
+        {
             player2Count--;
+            P2Lives[P2LivesLen].SetActive(false);
+            P2LivesLen--;
+        }
     }
 
     public void IncreasePlayerKillCount(int playerID)
