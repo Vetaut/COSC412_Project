@@ -13,9 +13,9 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool block = false;
 
-    public float moveForce = 365f;              // Amount of force added to move player left and right
+    public float moveForce = 100f;              // Amount of force added to move player left and right
     public float maxSpeed = 6f;                 // The fastest the player can travel in the x-axis
-    public float jumpForce = 50f;               // Amount of force added when the player jumps
+    public float jumpForce = 250f;               // Amount of force added when the player jumps
     public float maxJumpSpeed = 6f;
 
     public int currentJumpCount = 0;

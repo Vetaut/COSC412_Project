@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] P1Lives;
     public GameObject[] P2Lives;
     public GameObject[] winScreen;
+    public GameObject buttons;
 
     // Public GameObject PlayerObj;
     public GameObject[] respawnPosition;
@@ -73,6 +74,8 @@ public class GameManager : MonoBehaviour
             {
                 winScreen[1].SetActive(true);
             }
+
+            buttons.SetActive(true);
         }
     }
 
