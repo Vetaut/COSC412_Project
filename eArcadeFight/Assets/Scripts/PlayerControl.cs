@@ -35,7 +35,9 @@ public class PlayerControl : MonoBehaviour
 
         // If the jump button is pressed and the player is grounded then the player should jump
         if (Input.GetButtonDown(jumpButton) && isGrounded)
+        {
             jump = true;
+        }
     }
 
     // FixedUpdate is an update function interdependent 

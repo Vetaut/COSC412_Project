@@ -13,15 +13,12 @@ public class PlayerHealth : MonoBehaviour
 
     private float lastHitTime;              // The time at which the player was last hit
     private Vector3 healthScale;            // The local scale of the health bar initially (with full health)
-    private Knight knightScript; // Reference to the PlayerController Script
     private Animator anim;                  // Reference to the Animator on the player
-	//private GameManager gameManager;
 
     void Awake()
     {
         // Setting up references
-        knightScript = GetComponent<Knight>();
-        healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+        //healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
         anim = this.transform.Find("model").GetComponent<Animator>();
 
         // Getting the intial scale of the healthbae (while player is at full health)
@@ -51,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
                     GameObject UI_HP = GameObject.Find("UI_HealthBar");
                     Destroy(UI_HP);
                     Destroy(this.gameObject);
-                    //gameManager.DecreasePlayerCount(1);
+                    GameManager.gameManager.DecreasePlayerCount(1);
                 }
             }
         }
@@ -102,6 +99,7 @@ public class PlayerHealth : MonoBehaviour
                 }
                 GameObject UI_HP = GameObject.Find("UI_HealthBar");
                 Destroy(UI_HP);
+                GameManager.gameManager.DecreasePlayerCount(playerTypeID);
                 Destroy(this.gameObject);
                 //gameManager.DecreasePlayerCount(1);
             }
