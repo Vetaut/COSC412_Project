@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [HideInInspector]
-    public bool facingRight = true;             // Determines which way the player is facing
+    public bool facingRight = false;             // Determines which way the player is facing
     [HideInInspector]
     public bool jump = false;                   // Condition for whether the player can jump
     [HideInInspector]
@@ -13,12 +13,13 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool block = false;
 
-    public float moveForce = 100f;              // Amount of force added to move player left and right
+    public float moveForce = 75f;              // Amount of force added to move player left and right
     public float maxSpeed = 6f;                 // The fastest the player can travel in the x-axis
-    public float jumpForce = 250f;               // Amount of force added when the player jumps
+    public float jumpForce = 500f;               // Amount of force added when the player jumps
     public float maxJumpSpeed = 6f;
 
     public int currentJumpCount = 0;
+
 
     public string xCtrl = "Horizontal_P1";
     public string yCtrl = "Vertical_P1";
@@ -31,9 +32,17 @@ public class PlayerControl : MonoBehaviour
 
     void Awake()
     {
+        float EPSILON = 0.1f;
         // Setting up references
         groundCheck = transform.Find("groundCheck");
         anim = this.transform.Find("model").GetComponent<Animator>();
+
+        Vector3 theScale = transform.localScale;
+
+        if(System.Math.Abs(theScale.x - -1f) < EPSILON)
+        {
+            facingRight = true;
+        }
     }
 
     // Update is called once per frame

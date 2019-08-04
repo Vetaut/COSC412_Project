@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour
                 int killID = 0;
                 if (playerTypeID == 1) {
                     killID = 2;
-                    anim.SetTrigger("Die3");
+                    anim.SetTrigger("Die2");            // FIX IF OTHER SPRITE WORKS EVENTUALLY
                 }
                 else if (playerTypeID == 2)
                 {

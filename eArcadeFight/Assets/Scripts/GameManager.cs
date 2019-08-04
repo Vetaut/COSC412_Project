@@ -50,14 +50,12 @@ public class GameManager : MonoBehaviour
         if(player1Count < 1)
         {
             Player1 = Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
-            flipAtStart(Player1);
             player1Count++;
         }
 
         if(player2Count < 1)
         {
             Player2 = Instantiate(Player2_Prefab, respawnPosition[respawnP2].transform.position, Quaternion.identity);
-            flipAtStart(Player2);
             player2Count++;
         }
 
@@ -77,13 +75,6 @@ public class GameManager : MonoBehaviour
 
             buttons.SetActive(true);
         }
-    }
-
-    private void flipAtStart(GameObject hold)
-    {
-        Vector3 theScale = hold.transform.localScale;
-        theScale.x *= -1;
-        hold.transform.localScale = theScale;
     }
 
     public void DecreasePlayerCount(int playerID)
