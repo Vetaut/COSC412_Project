@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] P2Lives;
     public GameObject[] winScreen;
     public GameObject buttons;
+    public GameObject resume;
 
     // Public GameObject PlayerObj;
     public GameObject[] respawnPosition;
@@ -47,6 +48,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonDown("Cancel"))
+        {
+            Player1.GetComponent<PlayerControl>().enabled = false;
+            Player2.GetComponent<PlayerControl>().enabled = false;
+            buttons.SetActive(true);
+            resume.SetActive(true);
+        }
+
         if(player1Count < 1)
         {
             Player1 = Instantiate(Player1_Prefab, respawnPosition[respawnP1].transform.position, Quaternion.identity);
@@ -99,5 +108,13 @@ public class GameManager : MonoBehaviour
             P1KillCount++;
         else if (playerID == 2)
             P2KillCount++;
+    }
+
+    public void resumeGame()
+    {
+        Player1.GetComponent<PlayerControl>().enabled = true;
+        Player2.GetComponent<PlayerControl>().enabled = true;
+        buttons.SetActive(false);
+        resume.SetActive(false);
     }
 }
