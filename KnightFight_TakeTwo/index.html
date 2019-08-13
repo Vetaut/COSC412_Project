@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Unity data -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>eArcadeFight</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/KnightFight_TakeTwo.json", {onProgress: UnityProgress});
+    </script>
+
+    <style>
+      body {
+        background-image: url("images/wall.jpg");
+      }
+
+      .unityContent {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 680px;
+        width: 1050px;
+        border-radius: 1% 1% 1% 1%;
+        background-color: black;
+      }
+
+      .myClass {
+        position: relative;
+        margin-left: auto;
+        margin-right:auto;
+        height: 200px;
+        width: 1080px;
+        color: white;
+      }
+
+      .marqee {
+        width: 100%;
+        height: 200px;
+        border: 10px dotted #FFD150;
+      }
+
+      .controlBox {
+        height: 300px;
+        width: 1090px;
+        background-image: url("images/bgSmall.png");
+        background-size: 1090px;
+        background-repeat: no-repeat;
+        border-radius: 1% 1% 20px 20px;
+        border: 6px solid #56AB38;
+      }
+
+      .controls {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 450px;
+        width: 600px;
+      }
+
+      .arcadeMachine {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        border: 10px solid #0d0d0d;
+        border-radius: 5px;
+        width:1110px;
+        background-color: #404040;
+      }
+
+      .lights {
+        position: absolute;
+        border: 10px dotted #FFE3A4;
+        width: 100%;
+        height: 100%;
+      }
+
+      .arcadeBottom {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        border: 10px solid black;
+        width:1080px;
+        height:160px;
+        background-color: black;
+      }
+
+      .flashit{
+        color:#f2f;
+	      -webkit-animation: flash linear 1s infinite;
+	      animation: flash linear 1s infinite;
+      }
+      @-webkit-keyframes flash {
+      	0% { opacity: 1; } 
+      	50% { opacity: .1; } 
+      	100% { opacity: 1; }
+      }
+      @keyframes flash {
+      	0% { opacity: 1; } 
+      	50% { opacity: .1; } 
+      	100% { opacity: 1; }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">eArcadeFight.com</a>
+    </nav>
+
+
+    <div class="arcadeMachine">
+      <div class="myClass">
+        <div class="lights flashit"></div>
+        <img class="marqee" src="images/marqee.png" />
+      </div>
+
+      <div class="unityContent">
+        <div class="webgl-content center">
+          <div id="unityContainer" style="width: 960px; height: 600px"></div>
+          <div class="footer">
+            <div class="webgl-logo"></div>
+            <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+            <div class="title">eArcadeFight</div>
+          </div>
+        </div>
+      </div>
+      <div class="myClass controlBox">
+        <img class="controls" src="images/Controls.png"/>
+      </div>
+    </div>
+
+    <div class="arcadeBottom"></div>
+
+  </body>
+</html>
